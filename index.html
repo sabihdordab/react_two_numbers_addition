@@ -53,12 +53,37 @@
             function renderWinnerScreen(){
                 return ( <div id="winner"> You Win! </div> );
             }
-            
+
             function updateAnswer(event){
                 setState({
                     ...state,
                     answer : parseInt( event.target.value)
                 });
+            }
+            function inputKeyPress(event){
+                if (event.key === "Enter"){
+                    const answer = state.answer
+                    if (answer === state.number1 + state.number2){
+                        // Correct Answer - Add to Score and set the next problem
+                        setState({
+                            ...state,
+                            score : state.score+1,
+                            answer : "",
+                            number1: Math.ceil(Math.random() * 10),
+                            number2: Math.ceil(Math.random() * 10),
+                            correct: true
+                        })
+
+                    }else{
+                        setState({
+                                ...state,
+                                score: state.score - 1,
+                                answer: "",
+                                correct: false
+                            })
+                    }
+                }
+
             }
             function renderProblem(){
                 return (
@@ -66,7 +91,7 @@
                             <div className={state.correct ? "" : "incorrect"} id="problem">
                                 {state.number1} + {state.number2}
                             </div>
-                            <input onChange={updateAnswer} autoFocus={true} value={state.answer} />
+                            <input onKeyPress={inputKeyPress} onChange={updateAnswer} autoFocus={true} value={state.answer} />
                             <div>Score: {state.score}</div>
                         </div>
                     );
