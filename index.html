@@ -53,14 +53,20 @@
             function renderWinnerScreen(){
                 return ( <div id="winner"> You Win! </div> );
             }
-
+            
+            function updateAnswer(event){
+                setState({
+                    ...state,
+                    answer : parseInt( event.target.value)
+                });
+            }
             function renderProblem(){
                 return (
                         <div>
                             <div className={state.correct ? "" : "incorrect"} id="problem">
                                 {state.number1} + {state.number2}
                             </div>
-                            <input autoFocus={true} value={state.answer} />
+                            <input onChange={updateAnswer} autoFocus={true} value={state.answer} />
                             <div>Score: {state.score}</div>
                         </div>
                     );
