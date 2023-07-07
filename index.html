@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <style>
-        
+
         @keyframes grow{
             from{
                 font-size: 10px;
@@ -31,6 +31,10 @@
             animation-fill-mode: forwards;
         }
 
+        #problem{
+            font-size: 75px;
+        }
+
     </style>
 </head>
 <body>
@@ -50,6 +54,17 @@
                 return ( <div id="winner"> You Win! </div> );
             }
 
+            function renderProblem(){
+                return (
+                        <div>
+                            <div className={state.correct ? "" : "incorrect"} id="problem">
+                                {state.number1} + {state.number2}
+                            </div>
+                            <input autoFocus={true} value={state.answer} />
+                            <div>Score: {state.score}</div>
+                        </div>
+                    );
+            }
 
             if  (state.score === 10){
                 return renderWinnerScreen();
