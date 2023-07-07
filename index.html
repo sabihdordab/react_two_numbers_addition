@@ -18,7 +18,14 @@
     <div id="main"></div>
     <script type="text/babel">
         function Main(){
+            const [state , setState] = React.useState({
+                number1 : 0,
+                number2 : 0,
+                score : 0 ,
+                correct : true,
+                answer : ""
 
+            });
         }
         ReactDOM.render(< Main />,document.querySelector('#main'));
     </script>
